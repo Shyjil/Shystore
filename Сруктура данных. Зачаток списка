@@ -1,0 +1,80 @@
+// First_program.cpp : Defines the entry point for the console application.
+//
+//нужно создать динамическую структу,список,с удалением,редактированием
+#include <iostream>
+#include <conio.h>
+#include <string>
+const int n = 3;
+using namespace std;
+struct Message//объявил структуру
+{
+	int name;//имя устройства
+	int id;//ID сообщения (целое восьмизначно число в 16-ричной системе) например 0x535A04
+	int time;//дата и время отправления (в формате дд.мм.гггг чч:мм).
+	string text;//текст (строка 30 символов);
+	Message* next; //Ссылка на следущий элемент списка
+};
+struct dyn_list
+{
+	Message* head; // Первый элемент (голова) списка
+	Message* tail; // Последний элемент (хвост) списка
+};
+
+// Создание пустого списка
+void constr_list(dyn_list &l)
+{
+	l.head = NULL;
+}
+// Проверка списка на пустоту
+bool chk_empty(dyn_list l)
+{
+	return (l.head == NULL);
+}
+
+
+
+
+
+
+int main()
+{
+	setlocale(LC_ALL, ("ru"));
+	int  i, time = 0;//переменные,которые использую
+	Message mess[n], tmp;//объявляю массив типа моей структуры
+
+
+
+	for (i = 0;i<n;i++)//счетчик
+	{
+
+		cout << "Введите имя устройства:\n";
+		cin >> mess[i].name;
+
+		cout << "Введите ID сообщения :\n";
+		cin >> mess[i].id;
+
+		cout << "Введите дату и время отправления:\n";
+		cin >> mess[i].time;
+
+		cout << "Введите текст сообщения:\n";
+		cin >> mess[i].text;
+		cout << "\n----------------------------------\n";
+	};
+
+
+
+	//выводим всю информацию о сообещниях
+	for (i = 0;i < n;i++)
+	{
+		cout << "____________________________________________" << endl;;
+		cout << " Vremiya " << mess[i].time << endl;;
+		cout << " Имя устройства :" << mess[i].name << endl;
+		cout << " ID сообщенияя " << mess[i].id << endl;
+		cout << " Текст сообщения " << mess[i].text << endl;
+		cout << "____________________________________________" << "\n\n";
+
+	}
+
+	system("pause");
+	return 0;
+}
